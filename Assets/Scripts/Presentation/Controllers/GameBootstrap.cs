@@ -17,6 +17,7 @@ public class GameBootstrap : MonoBehaviour
     [SerializeField] private ShopUIController shopUIController;
     [SerializeField] private InventoryUIController inventoryUIController;
     [SerializeField] private GameStateController gameStateController;
+    [SerializeField] private FeedbackView feedbackView;
     
     private IInventoryService _inventoryService;
     private ICurrencyService _currencyService;
@@ -26,9 +27,11 @@ public class GameBootstrap : MonoBehaviour
     private ITargetService _targetService;
     private IShootingService _shootingService;
     private IGameStateService _gameStateService;
+    private IFeedbackService _feedbackService;
     
     private GameStatePresenter _gameStatePresenter;
     private ShopPresenter _shopPresenter;
+    private FeedbackPresenter _feedbackPresenter;
 
     private void Awake()
     {
@@ -46,6 +49,7 @@ public class GameBootstrap : MonoBehaviour
         _shootingService = new ShootingService(_weaponService);
         _shopService = new ShopService(_inventoryService, _currencyService);
         _gameStateService = new GameStateService(GameState.Menu);
+        _feedbackService = new FeedbackService();
     }
 
     private void InjectDependencies()
@@ -59,10 +63,7 @@ public class GameBootstrap : MonoBehaviour
         shopUIController.Init(_shopService, _inventoryService);
         _gameStatePresenter.OnShopOpened += shopUIController.Presenter.RebuildLayout;
         inventoryUIController.Init(_inventoryService, _weaponService);
-
-        /*hudController.Init(_currencyService);
-        shopUIController.Init(_shopService, _inventoryService, _weaponService);
-        inventoryUIController.Init(_inventoryService, _weaponService);
-        gameStateController.Init(_gameStateService);*/
+        _feedbackPresenter = new FeedbackPresenter(feedbackView, _feedbackService);
+        
     }
 }
