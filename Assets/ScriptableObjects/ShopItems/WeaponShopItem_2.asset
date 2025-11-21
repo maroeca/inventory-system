@@ -16,5 +16,5 @@ MonoBehaviour:
   ItemName: Revolver
   ItemSprite: {fileID: 21300000, guid: 0e23c162c236c9948b7ab669c0492821, type: 3}
   ItemDescription: Here we have some damage
-  ItemPrice: 150
+  ItemPrice: 100
   WeaponStats: {fileID: 11400000, guid: 9ab6229a3873729409e872a4ac0f2f05, type: 2}

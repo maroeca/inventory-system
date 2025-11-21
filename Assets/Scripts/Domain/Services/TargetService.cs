@@ -22,7 +22,6 @@ public class TargetService : ITargetService
         float reward = _rewardService.CalculateReward(damage,multiplier);
         
         _currencyService.AddCoins(reward);
-        Debug.Log($"Adding {reward} coins.");
         return reward;
     }
 }

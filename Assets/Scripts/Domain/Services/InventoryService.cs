@@ -19,7 +19,6 @@ public class InventoryService : IInventoryService
         {
             Items.Add(new InventoryItem(shopItem));
             OnInventoryChanged?.Invoke();
-            Debug.Log("Added item");
         }
     }
 

@@ -16,5 +16,5 @@ MonoBehaviour:
   ItemName: Assault Rifle
   ItemSprite: {fileID: 21300000, guid: 197d676fd0dc4824193356ee51dc0940, type: 3}
   ItemDescription: Here we have some speed
-  ItemPrice: 400
+  ItemPrice: 540
   WeaponStats: {fileID: 11400000, guid: f3ef17e154130364187c1d394a9935dc, type: 2}

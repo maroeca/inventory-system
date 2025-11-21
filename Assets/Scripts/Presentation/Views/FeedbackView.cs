@@ -11,7 +11,6 @@ public class FeedbackView : MonoBehaviour
 
     public void Show(string message)
     {
-        Debug.Log(message);
         messageText.text = message;
 
         if (_fadeRoutine != null)
@@ -25,7 +24,6 @@ public class FeedbackView : MonoBehaviour
         canvasGroup.alpha = 0;
         canvasGroup.gameObject.SetActive(true);
 
-        // Fade in
         for (float t = 0; t < 1f; t += Time.deltaTime * 4)
         {
             canvasGroup.alpha = t;
@@ -35,7 +33,6 @@ public class FeedbackView : MonoBehaviour
         canvasGroup.alpha = 1;
         yield return new WaitForSeconds(1.5f);
 
-        // Fade out
         for (float t = 1f; t > 0; t -= Time.deltaTime * 4)
         {
             canvasGroup.alpha = t;

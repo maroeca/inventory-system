@@ -16,5 +16,5 @@ MonoBehaviour:
   ItemName: SMG
   ItemSprite: {fileID: 21300000, guid: 89e103e549b22c344b1ba6b76d9825ab, type: 3}
   ItemDescription: THE BEST
-  ItemPrice: 1000
+  ItemPrice: 2000
   WeaponStats: {fileID: 11400000, guid: fbf95fd27b3a02d4ab92b909fbc54fbd, type: 2}
