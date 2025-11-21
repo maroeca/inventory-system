@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53343cbff91f18b40813430ae6ee126c, type: 3}
   m_Name: Weapon2
   m_EditorClassIdentifier: Assembly-CSharp::WeaponItemSO
-  BaseDamage: 10
-  RewardMultiplier: 1.5
+  BaseDamage: 20
+  RewardMultiplier: 2
   FireDelay: 1

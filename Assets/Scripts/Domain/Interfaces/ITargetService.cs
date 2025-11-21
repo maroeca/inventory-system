@@ -1,5 +1,5 @@
 
 public interface ITargetService
 {
-    float ApplyDamage(float damage);
+    float ApplyDamage(float damage, float multiplier);
 }

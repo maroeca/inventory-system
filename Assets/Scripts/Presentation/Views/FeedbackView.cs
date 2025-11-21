@@ -11,6 +11,7 @@ public class FeedbackView : MonoBehaviour
 
     public void Show(string message)
     {
+        Debug.Log(message);
         messageText.text = message;
 
         if (_fadeRoutine != null)

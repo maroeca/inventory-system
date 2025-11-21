@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Weapon4
   m_EditorClassIdentifier: Assembly-CSharp::WeaponItemSO
   BaseDamage: 50
-  RewardMultiplier: 5
+  RewardMultiplier: 8
   FireDelay: 0.1

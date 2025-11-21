@@ -4,24 +4,22 @@ public class TargetService : ITargetService
 {
     private readonly IRewardService _rewardService;
     private readonly ICurrencyService _currencyService;
-    private readonly float _baseReward;
 
-    public TargetService(IRewardService rewardService, ICurrencyService currencyService, float baseReward = 1f)
+    public TargetService(IRewardService rewardService, ICurrencyService currencyService)
     {
         _rewardService = rewardService;
         _currencyService = currencyService;
-        _baseReward = baseReward;
     }
     
     
-    public float ApplyDamage(float damage)
+    public float ApplyDamage(float damage, float multiplier)
     {
         if (damage <= 0)
         {
             return 0f;
         }
         
-        float reward = _rewardService.CalculateReward(damage, _baseReward);
+        float reward = _rewardService.CalculateReward(damage,multiplier);
         
         _currencyService.AddCoins(reward);
         Debug.Log($"Adding {reward} coins.");

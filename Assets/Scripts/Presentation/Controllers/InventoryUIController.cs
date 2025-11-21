@@ -7,9 +7,9 @@ public class InventoryUIController : MonoBehaviour
     
     public InventoryPresenter Presenter { get; private set; }
 
-    public void Init(IInventoryService inventoryService, IWeaponService weaponService)
+    public void Init(IInventoryService inventoryService, IWeaponService weaponService, IFeedbackService feedbackService)
     {
-        Presenter = new InventoryPresenter(inventoryView, inventoryService, weaponService);
+        Presenter = new InventoryPresenter(inventoryView, inventoryService, weaponService, feedbackService);
     }
 
     private void OnDestroy()

@@ -10,6 +10,7 @@ public class GameBootstrap : MonoBehaviour
     [SerializeField] private TargetBehaviour targetBehaviour;
     [SerializeField] private GameStateView gameStateView;
     [SerializeField] private WeaponShopItemSO startingWeapon;
+    [SerializeField] private WeaponHUDController weaponHUDController;
     
     
     [Header("UI")]
@@ -41,20 +42,20 @@ public class GameBootstrap : MonoBehaviour
 
     private void InitializeServices()
     {
+        _feedbackService = new FeedbackService();
         _inventoryService = new InventoryService();
         _currencyService = new CurrencyService(startingCoins: 50);
         _weaponService = new WeaponService();
         _rewardService = new RewardService();
         _targetService = new TargetService(_rewardService, _currencyService);
-        _shootingService = new ShootingService(_weaponService);
-        _shopService = new ShopService(_inventoryService, _currencyService);
+        _shootingService = new ShootingService(_weaponService, _feedbackService);
+        _shopService = new ShopService(_inventoryService, _currencyService, _feedbackService);
         _gameStateService = new GameStateService(GameState.Menu);
-        _feedbackService = new FeedbackService();
     }
 
     private void InjectDependencies()
     {
-        shootingController.Init(_shootingService, _weaponService);
+        shootingController.Init(_shootingService, _weaponService, _gameStateService);
         targetBehaviour.Init(_targetService);
         gameStateController.Init(_gameStateService);
         _gameStatePresenter = new GameStatePresenter(_gameStateService, gameStateView);
@@ -62,8 +63,9 @@ public class GameBootstrap : MonoBehaviour
         hudController.Init(_currencyService);
         shopUIController.Init(_shopService, _inventoryService);
         _gameStatePresenter.OnShopOpened += shopUIController.Presenter.RebuildLayout;
-        inventoryUIController.Init(_inventoryService, _weaponService);
+        inventoryUIController.Init(_inventoryService, _weaponService, _feedbackService);
         _feedbackPresenter = new FeedbackPresenter(feedbackView, _feedbackService);
+        weaponHUDController.Init(_weaponService);
         
     }
 }

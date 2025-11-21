@@ -4,16 +4,19 @@ using UnityEngine;
 public class ShootingService :IShootingService
 {
     private readonly IWeaponService _weaponService;
+    private readonly IFeedbackService _feedbackService;
 
-    public ShootingService(IWeaponService weaponService)
+    public ShootingService(IWeaponService weaponService, IFeedbackService feedbackService)
     {
         _weaponService = weaponService;
+        _feedbackService = feedbackService;
     }
     
     public bool Shoot(ITargetService target)
     {
         if (!_weaponService.HasWeaponEquipped)
         {
+            _feedbackService.ShowMessage("Equip a weapon first!");
             return false;
         }
 
@@ -28,7 +31,7 @@ public class ShootingService :IShootingService
         {
             return false;
         }
-        target.ApplyDamage(weaponStats.BaseDamage);
+        target.ApplyDamage(weaponStats.BaseDamage, weaponStats.RewardMultiplier);
         return true;   
     }
 }

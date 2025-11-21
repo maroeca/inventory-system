@@ -4,6 +4,7 @@ public class WeaponService :IWeaponService
 {
     private InventoryItem _equippedItem;
     public bool HasWeaponEquipped => _equippedItem != null;
+    public event System.Action OnWeaponChanged;
     
     public void Equip(InventoryItem item)
     {
@@ -16,7 +17,7 @@ public class WeaponService :IWeaponService
         if (item.ShopItem is WeaponShopItemSO && item != _equippedItem)
         {
             _equippedItem = item;
-            Debug.Log($"Equipped item: {item.ShopItem.name}");
+            OnWeaponChanged?.Invoke();
         }
         else
         {
@@ -27,6 +28,7 @@ public class WeaponService :IWeaponService
     public void Unequip()
     {
         _equippedItem = null;
+        OnWeaponChanged?.Invoke();
     }
 
     public WeaponItemSO GetEquippedWeapon()

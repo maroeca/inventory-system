@@ -6,14 +6,16 @@ public class InventoryPresenter
     private readonly InventoryView _view;
     private readonly IInventoryService _inventoryService;
     private readonly IWeaponService _weaponService;
+    private readonly IFeedbackService _feedbackService;
 
     private List<InventoryItemView> _itemViews = new();
 
-    public InventoryPresenter(InventoryView view, IInventoryService inventoryService, IWeaponService weaponService)
+    public InventoryPresenter(InventoryView view, IInventoryService inventoryService, IWeaponService weaponService, IFeedbackService feedbackService)
     {
         _view = view;
         _inventoryService = inventoryService;
         _weaponService = weaponService;
+        _feedbackService = feedbackService;
 
         _inventoryService.OnInventoryChanged += BuildList;
 
@@ -53,5 +55,6 @@ public class InventoryPresenter
     {
         _weaponService.Equip(item);
         BuildList();
+        _feedbackService.ShowMessage($"{item.ShopItem.ItemName} equipped!");
     }
 }
