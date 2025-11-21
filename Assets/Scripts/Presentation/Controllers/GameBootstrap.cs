@@ -9,7 +9,6 @@ public class GameBootstrap : MonoBehaviour
     [SerializeField] private ShootingController shootingController;
     [SerializeField] private TargetBehaviour targetBehaviour;
     [SerializeField] private GameStateView gameStateView;
-    [SerializeField] private WeaponShopItemSO startingWeapon;
     [SerializeField] private WeaponHUDController weaponHUDController;
     
     
